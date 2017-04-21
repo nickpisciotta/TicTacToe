@@ -6,21 +6,25 @@ import org.junit.Test;
 import java.io.IOException;
 import java.io.PrintStream;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 public class GameTest {
     private GameBoard gameBoard;
     private Game game;
     private PrintStream stream;
-    private Player player;
+    private Player player1;
+    private Player player2;
 
     @Before
     public void setUp() {
         stream = mock(PrintStream.class);
         gameBoard = mock(GameBoard.class);
-        player = mock(Player.class);
-        game = new Game(gameBoard, stream, player);
+        player1 = mock(Player.class);
+        player2 = mock(Player.class);
+        game = new Game(gameBoard, stream, player1, player2);
 
     }
 
@@ -32,17 +36,30 @@ public class GameTest {
     }
 
     @Test
-    public void shouldPromptPlayerToMakeAMarkAfterBoardIsDrawn() throws IOException {
+    public void shouldPromptBothPlayersToMakeAMarkAfterBoardIsDrawn() throws IOException {
         game.start();
 
-        verify(stream).println("Where would you like to place your mark?");
+        verify(stream, times(2)).println("Where would you like to place your mark?");
     }
 
     @Test
-    public void shouldTellPlayerToChooseWhereToPlaceMark() throws IOException {
+    public void shouldAllowFirstPlayerToChooseAPosition() throws IOException {
         game.start();
 
-        verify(player).chooseWhereToPlaceMark();
+        verify(player1).chooseWhereToPlaceMark();
+    }
+    @Test
+    public void shouldAllowSecondPlayerToChooseAPosition() throws IOException {
+        game.start();
+
+        verify(player2).chooseWhereToPlaceMark();
+    }
+
+    @Test
+    public void shouldTellGameBoardToReDrawTwiceAfterBothPlayersChooseAPosition() throws IOException {
+        game.start();
+
+        verify(gameBoard, times(2)).redraw(any(), any());
     }
 
 }

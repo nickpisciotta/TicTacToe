@@ -28,9 +28,16 @@ public class GameBoardTest {
 
     @Test
     public void shouldReDrawGameBoardAfterPlayerGuessInPosition1() {
-        gameBoard.redraw(1, "X");
+        gameBoard.redraw("1", "X");
 
         verify(stream).println("X | 2 | 3\n- - - - -\n4 | 5 | 6\n- - - - -\n7 | 8 | 9");
+    }
+
+    @Test
+    public void shouldReDrawGameBoardAfterPlayerGuessInPosition2() {
+        gameBoard.redraw("2", "X");
+
+        verify(stream).println("1 | X | 3\n- - - - -\n4 | 5 | 6\n- - - - -\n7 | 8 | 9");
     }
 
 }

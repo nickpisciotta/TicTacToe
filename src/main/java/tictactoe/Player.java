@@ -15,4 +15,8 @@ public class Player {
     public String chooseWhereToPlaceMark() throws IOException {
         return reader.readLine();
     }
+
+    public String placeMark() {
+        return mark;
+    }
 }
