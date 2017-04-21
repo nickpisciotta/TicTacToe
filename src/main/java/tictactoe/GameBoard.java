@@ -16,7 +16,8 @@ public class GameBoard {
 
     public void draw() {
         String rows = createRows().replaceAll("\n", "\n- - - - -\n");
-        stream.println(rows.substring(0, rows.length() - 3));
+        String trimmedBoard = rows.substring(0, rows.length() - 3);
+        stream.println(trimmedBoard);
     }
 
     private String createRows() {
@@ -33,9 +34,25 @@ public class GameBoard {
         return row;
     }
 
-    public void redraw(String placeOnBoard, String mark) {
-        updateBoardPositionsWithPlayersMark(placeOnBoard, mark);
-        draw();
+    public void redraw(String chosenPosition, String mark) {
+        if (isLocationAlreadyTaken(chosenPosition)) {
+            stream.println("Location already taken. Please select another position");
+        } else {
+            updateBoardPositionsWithPlayersMark(chosenPosition, mark);
+            draw();
+        }
+    }
+
+    private boolean isLocationAlreadyTaken(String chosenPosition) {
+        Integer indexOfPosition = Integer.parseInt(chosenPosition) - 1;
+        String markAtPositionOnBoard = boardPositions.get(indexOfPosition);
+
+        try {
+            Integer.parseInt(markAtPositionOnBoard);
+        } catch (NumberFormatException e) {
+            return true;
+        }
+        return false;
     }
 
     public void createBoardPositions() {

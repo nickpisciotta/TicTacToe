@@ -5,7 +5,6 @@ import org.junit.Test;
 
 import java.io.PrintStream;
 
-import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
@@ -38,6 +37,22 @@ public class GameBoardTest {
         gameBoard.redraw("2", "X");
 
         verify(stream).println("1 | X | 3\n- - - - -\n4 | 5 | 6\n- - - - -\n7 | 8 | 9");
+    }
+
+    @Test
+    public void shouldReDrawGameBoardAfterBothPlayersGuess() {
+        gameBoard.redraw("1", "X");
+        gameBoard.redraw("2", "O");
+
+        verify(stream).println("X | O | 3\n- - - - -\n4 | 5 | 6\n- - - - -\n7 | 8 | 9");
+    }
+
+    @Test
+    public void shouldTellPlayerAPositionIsAlreadyTakenIfPlayerSelectsAPositionThatIsAlreadyTake(){
+        gameBoard.redraw("1", "X");
+        gameBoard.redraw("1", "X");
+
+        verify(stream).println("Location already taken. Please select another position");
     }
 
 }
