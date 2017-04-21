@@ -18,7 +18,7 @@ public class PlayerTest {
     @Before
     public void setUp() {
         reader = mock(BufferedReader.class);
-        player = new Player(reader);
+        player = new Player(reader, "X");
     }
 
     @Test
