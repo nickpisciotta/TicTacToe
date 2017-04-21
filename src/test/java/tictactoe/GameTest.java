@@ -29,10 +29,12 @@ public class GameTest {
     }
 
     @Test
-    public void shouldPromptUserToMakeAMarkAfterBoardIsDrawn() {
+    public void shouldPromptPlayerToMakeAMarkAfterBoardIsDrawn() {
         game.start();
 
         verify(stream).println("Where would you like to place your mark?");
     }
+
+
 
 }
