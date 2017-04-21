@@ -12,11 +12,9 @@ public class Player {
         this.mark = mark;
     }
 
-    public String chooseWhereToPlaceMark() throws IOException {
+    public String choosePosition() throws IOException {
         return reader.readLine();
     }
 
-    public String placeMark() {
-        return mark;
-    }
+    public String getMark() {return mark;}
 }

@@ -46,13 +46,13 @@ public class GameTest {
     public void shouldAllowFirstPlayerToChooseAPosition() throws IOException {
         game.start();
 
-        verify(player1).chooseWhereToPlaceMark();
+        verify(player1).choosePosition();
     }
     @Test
     public void shouldAllowSecondPlayerToChooseAPosition() throws IOException {
         game.start();
 
-        verify(player2).chooseWhereToPlaceMark();
+        verify(player2).choosePosition();
     }
 
     @Test

@@ -27,8 +27,8 @@ public class Game {
     private void playerMakesMark(Player player) throws IOException {
         promptPlayerWhereToMark(player);
         String chosenPositionOfPlayer;
-        chosenPositionOfPlayer = player.chooseWhereToPlaceMark();
-        gameBoard.redraw(chosenPositionOfPlayer, player.placeMark());
+        chosenPositionOfPlayer = player.choosePosition();
+        gameBoard.redraw(chosenPositionOfPlayer, player.getMark());
     }
 
     private void promptPlayerWhereToMark(Player player) {

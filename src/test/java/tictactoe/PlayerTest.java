@@ -25,7 +25,7 @@ public class PlayerTest {
     public void shouldAllowPlayerToEnterWhereToPlaceAMark() throws IOException {
         when(reader.readLine()).thenReturn("1");
 
-        String playerInput = player.chooseWhereToPlaceMark();
+        String playerInput = player.choosePosition();
 
         assertThat(playerInput, is("1"));
     }
